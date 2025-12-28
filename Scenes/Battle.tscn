@@ -1,0 +1,406 @@
+[gd_scene load_steps=33 format=3 uid="uid://m7m1yfpleivv"]
+
+[ext_resource type="Script" uid="uid://b505a5jcw3k5x" path="res://Scripts/Controller/BattleController.gd" id="1_wvl2i"]
+[ext_resource type="Script" uid="uid://cabaertu1p0s3" path="res://Scripts/Controller/InputController.gd" id="2_1samx"]
+[ext_resource type="Script" uid="uid://bvn400ppvv328" path="res://Scripts/Common/State Machine/StateMachine.gd" id="2_p46lj"]
+[ext_resource type="PackedScene" uid="uid://dqowhu3gmw8xk" path="res://Prefabs/Exile.tscn" id="2_u22qb"]
+[ext_resource type="Script" uid="uid://cx3r7dlb8cugv" path="res://Scripts/Controller/ConversationController.gd" id="3_262jj"]
+[ext_resource type="Script" uid="uid://c0pm0064sq2wd" path="res://Scripts/Controller/Battle States/InitBattleState.gd" id="3_c5ef4"]
+[ext_resource type="Script" uid="uid://dgpawcn3y8sv0" path="res://Scripts/PreProd/BoardCreator.gd" id="3_p46lj"]
+[ext_resource type="Script" uid="uid://dovgj36cc7egf" path="res://Scripts/Controller/CameraController.gd" id="4_8teo4"]
+[ext_resource type="Script" uid="uid://vlacyg6jpyja" path="res://Scripts/Controller/Battle States/MoveTargetState.gd" id="4_u22qb"]
+[ext_resource type="Script" uid="uid://eeegk7nj4nqv" path="res://Scripts/View Model Component/ConversationPanel.gd" id="4_xmk5i"]
+[ext_resource type="Script" uid="uid://d3g76v7j4k1jq" path="res://Scripts/Common/UI/PanelAnchor.gd" id="5_jr0ro"]
+[ext_resource type="Texture2D" uid="uid://dt3dx10ry0gl2" path="res://Textures/UI/ConversationPanel.png" id="5_n5y6x"]
+[ext_resource type="Texture2D" uid="uid://bf7yx5otaoi2o" path="res://Textures/UI/Avatar.png" id="6_jr0ro"]
+[ext_resource type="Script" uid="uid://xtwotfs3aif4" path="res://Scripts/Controller/Battle States/SelectUnitState.gd" id="6_qxnh6"]
+[ext_resource type="Texture2D" uid="uid://dsironvugk70x" path="res://Textures/UI/MoreConversationArrow.png" id="7_6xsll"]
+[ext_resource type="Script" uid="uid://duilu68nexlg8" path="res://Scripts/Controller/Battle States/MoveSequenceState.gd" id="7_262jj"]
+[ext_resource type="Script" uid="uid://bk2djj80itk02" path="res://Scripts/Controller/Battle States/CutSceneState.gd" id="9_l0uqe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmk5i"]
+
+[sub_resource type="Resource" id="Resource_6xsll"]
+script = ExtResource("5_jr0ro")
+anchorName = "Hide Bottom"
+myAnchor = 2
+parentAnchor = 3
+offset = Vector2(0, -20)
+duration = 0.5
+trans = 0
+anchorEase = 2
+metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
+
+[sub_resource type="Resource" id="Resource_imcj7"]
+script = ExtResource("5_jr0ro")
+anchorName = "Hide Top"
+myAnchor = 0
+parentAnchor = 1
+offset = Vector2(0, 20)
+duration = 0.5
+trans = 0
+anchorEase = 2
+metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
+
+[sub_resource type="Resource" id="Resource_7i387"]
+script = ExtResource("5_jr0ro")
+anchorName = "Show Bottom"
+myAnchor = 3
+parentAnchor = 3
+offset = Vector2(0, -20)
+duration = 0.5
+trans = 0
+anchorEase = 2
+metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
+
+[sub_resource type="Resource" id="Resource_nttxn"]
+script = ExtResource("5_jr0ro")
+anchorName = "Show Top"
+myAnchor = 1
+parentAnchor = 1
+offset = Vector2(0, 20)
+duration = 0.5
+trans = 0
+anchorEase = 2
+metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
+
+[sub_resource type="Animation" id="Animation_jr0ro"]
+resource_name = "RightArrowBounce"
+length = 0.5
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(170, 210), Vector2(170, 220)]
+}
+
+[sub_resource type="Animation" id="Animation_6xsll"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(170, 210)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_imcj7"]
+_data = {
+&"RESET": SubResource("Animation_6xsll"),
+&"RightArrowBounce": SubResource("Animation_jr0ro")
+}
+
+[sub_resource type="Resource" id="Resource_jr0ro"]
+script = ExtResource("5_jr0ro")
+anchorName = "Hide Bottom"
+myAnchor = 3
+parentAnchor = 2
+offset = Vector2(0, -20)
+duration = 0.5
+trans = 0
+anchorEase = 2
+metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
+
+[sub_resource type="Resource" id="Resource_u5lwd"]
+script = ExtResource("5_jr0ro")
+anchorName = "Hide Top"
+myAnchor = 1
+parentAnchor = 0
+offset = Vector2(0, 20)
+duration = 0.5
+trans = 0
+anchorEase = 2
+metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
+
+[sub_resource type="Resource" id="Resource_dfi4p"]
+script = ExtResource("5_jr0ro")
+anchorName = "Show Bottom"
+myAnchor = 2
+parentAnchor = 2
+offset = Vector2(0, -20)
+duration = 0.5
+trans = 0
+anchorEase = 2
+metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
+
+[sub_resource type="Resource" id="Resource_yahm3"]
+script = ExtResource("5_jr0ro")
+anchorName = "Show Top"
+myAnchor = 0
+parentAnchor = 0
+offset = Vector2(0, 20)
+duration = 0.5
+trans = 0
+anchorEase = 2
+metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
+
+[sub_resource type="Animation" id="Animation_7i387"]
+resource_name = "LeftArrowBounce"
+length = 0.5
+loop_mode = 2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(262, 210), Vector2(262, 220)]
+}
+
+[sub_resource type="Animation" id="Animation_nttxn"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(262, 210)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u5lwd"]
+_data = {
+&"LeftArrowBounce": SubResource("Animation_7i387"),
+&"RESET": SubResource("Animation_nttxn")
+}
+
+[node name="Battle" type="Node3D"]
+
+[node name="Battle Controller" type="Node" parent="." node_paths=PackedStringArray("board", "inputController", "cameraController", "conversationController", "stateMachine", "startState")]
+script = ExtResource("1_wvl2i")
+board = NodePath("Board")
+inputController = NodePath("Input Controller")
+cameraController = NodePath("Camera Controller")
+conversationController = NodePath("Conversation Controller")
+stateMachine = NodePath("State Machine")
+startState = NodePath("State Machine/Init Battle State")
+heroPreFab = ExtResource("2_u22qb")
+
+[node name="Conversation Controller" type="Node" parent="Battle Controller" node_paths=PackedStringArray("leftPanel", "rightPanel")]
+script = ExtResource("3_262jj")
+leftPanel = NodePath("LeftPanel")
+rightPanel = NodePath("RightPanel")
+
+[node name="RightPanel" type="Panel" parent="Battle Controller/Conversation Controller" node_paths=PackedStringArray("message", "speaker", "arrow")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -465.0
+offset_bottom = 227.0
+grow_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xmk5i")
+script = ExtResource("4_xmk5i")
+message = NodePath("Message")
+speaker = NodePath("Speaker")
+arrow = NodePath("Right More Arrow")
+anchorList = Array[ExtResource("5_jr0ro")]([SubResource("Resource_6xsll"), SubResource("Resource_imcj7"), SubResource("Resource_7i387"), SubResource("Resource_nttxn")])
+
+[node name="Background" type="NinePatchRect" parent="Battle Controller/Conversation Controller/RightPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -465.0
+offset_top = -140.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("5_n5y6x")
+patch_margin_left = 71
+patch_margin_top = 70
+patch_margin_right = 2
+patch_margin_bottom = 70
+
+[node name="Speaker" type="TextureRect" parent="Battle Controller/Conversation Controller/RightPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -154.0
+offset_top = -227.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("6_jr0ro")
+
+[node name="Message" type="Label" parent="Battle Controller/Conversation Controller/RightPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -420.0
+offset_top = -130.0
+offset_right = -136.0
+offset_bottom = -10.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.407843, 0.172549, 0.0823529, 1)
+theme_override_font_sizes/font_size = 25
+text = "Dialogue goes here that will surely be useful"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Right More Arrow" type="TextureRect" parent="Battle Controller/Conversation Controller/RightPanel"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -295.0
+offset_top = -17.0
+offset_right = -262.0
+offset_bottom = 7.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = ExtResource("7_6xsll")
+
+[node name="Right Anim" type="AnimationPlayer" parent="Battle Controller/Conversation Controller/RightPanel/Right More Arrow"]
+libraries = {
+&"": SubResource("AnimationLibrary_imcj7")
+}
+autoplay = "RightArrowBounce"
+
+[node name="LeftPanel" type="Panel" parent="Battle Controller/Conversation Controller" node_paths=PackedStringArray("message", "speaker", "arrow")]
+offset_right = 465.0
+offset_bottom = 227.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_xmk5i")
+script = ExtResource("4_xmk5i")
+message = NodePath("Message")
+speaker = NodePath("Speaker")
+arrow = NodePath("Left More Arrow")
+anchorList = Array[ExtResource("5_jr0ro")]([SubResource("Resource_jr0ro"), SubResource("Resource_u5lwd"), SubResource("Resource_dfi4p"), SubResource("Resource_yahm3")])
+
+[node name="Background" type="NinePatchRect" parent="Battle Controller/Conversation Controller/LeftPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -140.0
+offset_right = 465.0
+grow_vertical = 0
+scale = Vector2(-1, 1)
+pivot_offset = Vector2(232.5, 0)
+texture = ExtResource("5_n5y6x")
+patch_margin_left = 71
+patch_margin_top = 70
+patch_margin_right = 2
+patch_margin_bottom = 70
+
+[node name="Speaker" type="TextureRect" parent="Battle Controller/Conversation Controller/LeftPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -227.0
+offset_right = 154.0
+grow_vertical = 0
+texture = ExtResource("6_jr0ro")
+flip_h = true
+
+[node name="Message" type="Label" parent="Battle Controller/Conversation Controller/LeftPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 136.0
+offset_top = -130.0
+offset_right = 420.0
+offset_bottom = -10.0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.407843, 0.172549, 0.0823529, 1)
+theme_override_font_sizes/font_size = 25
+text = "Dialogue goes here that will surely be useful"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="Left More Arrow" type="TextureRect" parent="Battle Controller/Conversation Controller/LeftPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 262.0
+offset_top = -17.0
+offset_right = 295.0
+offset_bottom = 7.0
+grow_vertical = 0
+texture = ExtResource("7_6xsll")
+
+[node name="Left Anim" type="AnimationPlayer" parent="Battle Controller/Conversation Controller/LeftPanel/Left More Arrow"]
+libraries = {
+&"": SubResource("AnimationLibrary_u5lwd")
+}
+autoplay = "LeftArrowBounce"
+
+[node name="State Machine" type="Node" parent="Battle Controller"]
+script = ExtResource("2_p46lj")
+
+[node name="Init Battle State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("cutSceneState")]
+script = ExtResource("3_c5ef4")
+cutSceneState = NodePath("../Cut Scene State")
+
+[node name="Move Target State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("MoveSequenceState")]
+script = ExtResource("4_u22qb")
+MoveSequenceState = NodePath("../Move Sequence State")
+
+[node name="Select Unit State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("moveTargetState")]
+script = ExtResource("6_qxnh6")
+moveTargetState = NodePath("../Move Target State")
+
+[node name="Move Sequence State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("SelectUnitState")]
+script = ExtResource("7_262jj")
+SelectUnitState = NodePath("../Select Unit State")
+
+[node name="Cut Scene State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("selectUnitState")]
+script = ExtResource("9_l0uqe")
+selectUnitState = NodePath("../Select Unit State")
+
+[node name="Input Controller" type="Node" parent="Battle Controller"]
+script = ExtResource("2_1samx")
+
+[node name="Board" type="Node3D" parent="Battle Controller"]
+script = ExtResource("3_p46lj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Battle Controller"]
+
+[node name="Camera Controller" type="Node3D" parent="Battle Controller"]
+script = ExtResource("4_8teo4")
+
+[node name="Heading" type="Node3D" parent="Battle Controller/Camera Controller"]
+transform = Transform3D(0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 0)
+
+[node name="Pitch" type="Node3D" parent="Battle Controller/Camera Controller/Heading"]
+transform = Transform3D(1, 0, 0, 0, 0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0, 0)
+
+[node name="Camera3D" type="Camera3D" parent="Battle Controller/Camera Controller/Heading/Pitch"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+projection = 1
+size = 10.0

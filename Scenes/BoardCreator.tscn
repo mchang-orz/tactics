@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://ccisfv854xcyv"]
+
+[ext_resource type="Script" uid="uid://dgpawcn3y8sv0" path="res://Scripts/PreProd/BoardCreator.gd" id="1_7j8l5"]
+
+[node name="BoardCreator" type="Node3D"]
+script = ExtResource("1_7j8l5")

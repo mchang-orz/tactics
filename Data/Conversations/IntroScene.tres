@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="ConversationData" load_steps=8 format=3 uid="uid://dxqj206eq6cqn"]
+
+[ext_resource type="Script" uid="uid://dep6t5tlwqcgo" path="res://Scripts/Model/SpeakerData.gd" id="1_s88cs"]
+[ext_resource type="Texture2D" uid="uid://bblc45fyj3p3g" path="res://Textures/UI/EvilAvatar.png" id="2_2gabl"]
+[ext_resource type="Script" uid="uid://najhf1kgjitp" path="res://Scripts/Model/ConversationData.gd" id="2_t0wrr"]
+[ext_resource type="Texture2D" uid="uid://bf7yx5otaoi2o" path="res://Textures/UI/Avatar.png" id="3_vsu2l"]
+
+[sub_resource type="Resource" id="Resource_s88cs"]
+script = ExtResource("1_s88cs")
+speaker = ExtResource("2_2gabl")
+anchor = 1
+messages = Array[String](["HILLOCK_1A", "HILLOCK_1B"])
+metadata/_custom_type_script = "uid://dep6t5tlwqcgo"
+
+[sub_resource type="Resource" id="Resource_t0wrr"]
+script = ExtResource("1_s88cs")
+speaker = ExtResource("3_vsu2l")
+anchor = 0
+messages = Array[String](["MARAUDER_1A"])
+metadata/_custom_type_script = "uid://dep6t5tlwqcgo"
+
+[sub_resource type="Resource" id="Resource_2gabl"]
+script = ExtResource("1_s88cs")
+speaker = ExtResource("2_2gabl")
+anchor = 1
+messages = Array[String](["HILLOCK_2A"])
+metadata/_custom_type_script = "uid://dep6t5tlwqcgo"
+
+[resource]
+script = ExtResource("2_t0wrr")
+list = Array[ExtResource("1_s88cs")]([SubResource("Resource_s88cs"), SubResource("Resource_t0wrr"), SubResource("Resource_2gabl")])
+metadata/_custom_type_script = "uid://najhf1kgjitp"

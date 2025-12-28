@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://dqowhu3gmw8xk"]
+
+[ext_resource type="Script" uid="uid://c4572wu62q2ol" path="res://Scripts/View Model Component/Unit.gd" id="1_1l6r6"]
+[ext_resource type="Material" uid="uid://dv31x10p2cof8" path="res://Materials/Ally.tres" id="1_5a75v"]
+[ext_resource type="Material" uid="uid://3ly3xdedtpyy" path="res://Materials/Eyes.tres" id="2_1l6r6"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_s6xb0"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_0syes"]
+
+[node name="Marauder" type="Node3D"]
+script = ExtResource("1_1l6r6")
+
+[node name="Movement" type="Node" parent="."]
+
+[node name="Jumper" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="Jumper"]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0, 0, 0)
+material_override = ExtResource("1_5a75v")
+mesh = SubResource("SphereMesh_s6xb0")
+skeleton = NodePath("")
+
+[node name="Eye" type="MeshInstance3D" parent="Jumper/Body"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 0.17, 0.32, 0.3)
+material_override = ExtResource("2_1l6r6")
+mesh = SubResource("SphereMesh_0syes")
+skeleton = NodePath("")
+
+[node name="Eye2" type="MeshInstance3D" parent="Jumper/Body"]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.17, 0.32, 0.3)
+material_override = ExtResource("2_1l6r6")
+mesh = SubResource("SphereMesh_0syes")
+skeleton = NodePath("")

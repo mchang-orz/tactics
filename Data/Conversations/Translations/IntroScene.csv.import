@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://dahlxxppgio4m"
+
+[deps]
+
+files=["res://Data/Conversations/Translations/IntroScene.en.translation", "res://Data/Conversations/Translations/IntroScene.es.translation", "res://Data/Conversations/Translations/IntroScene.ita.translation", "res://Data/Conversations/Translations/IntroScene.fr.translation"]
+
+source_file="res://Data/Conversations/Translations/IntroScene.csv"
+dest_files=["res://Data/Conversations/Translations/IntroScene.en.translation", "res://Data/Conversations/Translations/IntroScene.es.translation", "res://Data/Conversations/Translations/IntroScene.ita.translation", "res://Data/Conversations/Translations/IntroScene.fr.translation"]
+
+[params]
+
+compress=true
+delimiter=0
