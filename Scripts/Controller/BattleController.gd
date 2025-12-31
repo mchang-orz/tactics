@@ -5,11 +5,15 @@ class_name BattleController
 @export var inputController: InputController
 @export var cameraController: CameraController
 @export var conversationController: ConversationController
+@export var abilityMenuPanelController:AbilityMenuPanelController
+@export var statPanelController:StatPanelController
 @export var stateMachine: StateMachine
 @export var startState: State
 @export var heroPreFab: PackedScene
 
-var currentUnit:Unit
+var turn:Turn = Turn.new()
+var units:Array[Unit] = []
+
 var currentTile:Tile:
 	get: return board.GetTile(board.pos)
 

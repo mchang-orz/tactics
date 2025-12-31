@@ -16,7 +16,16 @@ var selectedTileColor:Color = Color(0,1,1,1)
 var defaultTileColor:Color = Color(1,1,1,1)
 var marker 
 var _random = RandomNumberGenerator.new()
+#bounds
+var _min = Vector2i(999999, 999999)
+var _max = Vector2i(-999999, -999999)
 
+var min:Vector2i:
+	get:
+		return _min 
+var max:Vector2i:
+	get:
+		return _max
 #save path and file naming
 var savePath = "res://Data/Levels/"
 @export var fileName = "defaultMap.json"
@@ -43,6 +52,8 @@ func _UpdateMarker():
 		marker.position = Vector3(pos.x, 0 ,pos.y)
 
 func Clear():
+	_min = Vector2i(999999, 999999)
+	_max = Vector2i(-999999, -999999)
 	for key in tiles:
 		tiles[key].free()
 	tiles.clear()
@@ -167,6 +178,11 @@ func LoadMapJSON(saveFile):
 		t.Load(Vector2(mtile["pos_x"], mtile["pos_z"]) , mtile["height"])
 		tiles[Vector2i(t.pos.x,t.pos.y)] = t
 	
+		_min.x = min(_min.x, t.pos.x)
+		_min.y = min(_min.y, t.pos.y)
+		_max.x = max(_max.x, t.pos.x)
+		_max.y = max(_max.y, t.pos.y)
+	
 	save_game.close()
 	_UpdateMarker()
 
@@ -222,7 +238,8 @@ func RangeSearch(start:Tile, addTile:Callable, range:int):
 			if next == null:
 				continue
 			if next == start:
-				retValue.append(start)
+				if addTile.call(start,start):
+					retValue.append(start)
 			elif addTile.call(start, next):
 				next.distance = (abs(x) + abs(y))
 				next.prev = start
