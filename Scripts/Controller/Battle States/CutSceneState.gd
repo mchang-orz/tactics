@@ -13,7 +13,7 @@ func AddListeners():
 
 func RemoveListeners():
 	super()
-	_owner.conversationController.completeEvent.connect(OnCompleteConversation)
+	_owner.conversationController.completeEvent.disconnect(OnCompleteConversation)
 
 func Enter():
 	super()

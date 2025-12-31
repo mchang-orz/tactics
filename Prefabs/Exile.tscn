@@ -1,14 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqowhu3gmw8xk"]
+[gd_scene load_steps=7 format=3 uid="uid://dqowhu3gmw8xk"]
 
 [ext_resource type="Script" uid="uid://c4572wu62q2ol" path="res://Scripts/View Model Component/Unit.gd" id="1_1l6r6"]
 [ext_resource type="Material" uid="uid://dv31x10p2cof8" path="res://Materials/Ally.tres" id="1_5a75v"]
 [ext_resource type="Material" uid="uid://3ly3xdedtpyy" path="res://Materials/Eyes.tres" id="2_1l6r6"]
+[ext_resource type="Script" uid="uid://iuhhl3e51lq1" path="res://Scripts/View Model Component/Ability/Range/ConstantAbilityRange.gd" id="4_li0g8"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_s6xb0"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_0syes"]
 
-[node name="Marauder" type="Node3D"]
+[node name="Exile" type="Node3D"]
 script = ExtResource("1_1l6r6")
 
 [node name="Movement" type="Node" parent="."]
@@ -32,3 +33,12 @@ transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, -0.17, 0.32, 0.3)
 material_override = ExtResource("2_1l6r6")
 mesh = SubResource("SphereMesh_0syes")
 skeleton = NodePath("")
+
+[node name="Abilities" type="Node" parent="."]
+
+[node name="Attack" type="Node" parent="Abilities"]
+
+[node name="Ability Range" type="Node" parent="Abilities/Attack"]
+script = ExtResource("4_li0g8")
+horizontal = 3
+minH = 1

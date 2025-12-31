@@ -3,6 +3,30 @@ class_name BattleState
 
 var _owner: BattleController
 
+var statPanelController:StatPanelController:
+	get:
+		return _owner.statPanelController
+
+var abilityMenuPanelController:AbilityMenuPanelController:
+	get:
+		return _owner.abilityMenuPanelController
+
+var pos:Vector2i:
+	get:
+		return _owner.board.pos
+
+var board:BoardCreator:
+	get:
+		return _owner.board
+
+var turn:Turn:
+	get:
+		return _owner.turn
+
+var units:Array[Unit]:
+	get:
+		return _owner.units
+
 func _ready() -> void:
 	_owner = get_node("../../")
 
@@ -19,6 +43,26 @@ func RemoveListeners():
 	_owner.inputController.quitEvent.disconnect(OnQuit)
 	_owner.inputController.cameraZoomEvent.disconnect(Zoom)
 	_owner.inputController.cameraRotateEvent.disconnect(Orbit)
+
+func GetUnit(p:Vector2i):
+	var t:Tile = _owner.board.GetTile(p)
+	if t == null || t.content == null:
+		return null
+	return t.content
+
+func RefreshPrimaryStatPanel(p:Vector2i):
+	var target:Unit = GetUnit(p)
+	if target != null:
+		statPanelController.ShowPrimary(target)
+	else:
+		statPanelController.HidePrimary()
+
+func RefreshSecondaryStatPanel(p:Vector2i):
+	var target:Unit = GetUnit(p)
+	if target != null:
+		statPanelController.ShowSecondary(target)
+	else:
+		statPanelController.HideSecondary()
 
 func OnMove(e:Vector2i):
 	pass

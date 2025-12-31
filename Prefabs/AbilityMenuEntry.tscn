@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://psdt81r8a7ud"]
+
+[ext_resource type="Script" uid="uid://cydcoef26dv3j" path="res://Scripts/View Model Component/Poolable.gd" id="1_cj7iq"]
+[ext_resource type="Script" uid="uid://xvasur2hahgx" path="res://Scripts/View Model Component/AbilityMenuEntry.gd" id="2_u8nky"]
+[ext_resource type="Texture2D" uid="uid://c21i2e48vqdlx" path="res://Textures/UI/MenuBullet.png" id="3_mdkyq"]
+[ext_resource type="Texture2D" uid="uid://b8gq570yiuq8c" path="res://Textures/UI/MenuBulletSelected.png" id="4_mdkyq"]
+[ext_resource type="Texture2D" uid="uid://cwu7xenycj6n" path="res://Textures/UI/MenuBulletLocked.png" id="5_lu4al"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lu4al"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_20q0q"]
+
+[node name="Ability Menu Entry" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxEmpty_lu4al")
+script = ExtResource("1_cj7iq")
+
+[node name="Entry" type="PanelContainer" parent="." node_paths=PackedStringArray("bullet", "label")]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_20q0q")
+script = ExtResource("2_u8nky")
+bullet = NodePath("HBox/Bullet Rect")
+label = NodePath("HBox/Entry Label")
+normalSprite = ExtResource("3_mdkyq")
+selectedSprite = ExtResource("4_mdkyq")
+disabledSprite = ExtResource("5_lu4al")
+
+[node name="HBox" type="HBoxContainer" parent="Entry"]
+layout_mode = 2
+
+[node name="Bullet Rect" type="TextureRect" parent="Entry/HBox"]
+layout_mode = 2
+texture = ExtResource("3_mdkyq")
+expand_mode = 3
+
+[node name="Entry Label" type="Label" parent="Entry/HBox"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.298039, 0.298039, 0.298039, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 18
+text = "Ability Entry"
