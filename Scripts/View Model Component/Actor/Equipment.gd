@@ -4,9 +4,9 @@ class_name Equipment
 signal EquippedNotification()
 signal UnEquippedNotification()
 
-var _items:Array[Equip]
+var _items:Array[Equippable]
 
-func Equip(item:Equip, slots:EquipmentSlots.Slot):
+func Equip(item:Equippable, slots:EquipSlots.Slot):
 	UnEquipSlots(slots)
 	
 	_items.append(item)
@@ -16,16 +16,16 @@ func Equip(item:Equip, slots:EquipmentSlots.Slot):
 	item.OnEquip()
 	EquippedNotification.emit(self, item)
 
-func UnEquipItem(item:Equip):
+func UnEquipItem(item:Equippable):
 	item.OnUnEquip()
-	item.slots = EquipmentSlots.Slot.NONE
+	item.slots = EquipSlots.Slot.NONE
 	_items.erase(item)
 	var itemParent:Node = item.get_parent()
 	self.remove_child(itemParent)
 	UnEquippedNotification.emit(self, item)
 	
-func UnEquipSlots(slots:EquipmentSlots.Slot):
+func UnEquipSlots(slots:EquipSlots.Slot):
 	for i in range(_items.size()-1,-1,-1):
 		var item = _items[i]
-		if (item.slots & slots) != EquipmentSlots.Slot.NONE:
+		if (item.slots & slots) != EquipSlots.Slot.NONE:
 			UnEquipItem(item)

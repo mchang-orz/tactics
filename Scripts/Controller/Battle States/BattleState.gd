@@ -11,6 +11,10 @@ var abilityMenuPanelController:AbilityMenuPanelController:
 	get:
 		return _owner.abilityMenuPanelController
 
+var turnController:TurnOrderController:
+	get:
+		return _owner.turnOrderController
+
 var pos:Vector2i:
 	get:
 		return _owner.board.pos

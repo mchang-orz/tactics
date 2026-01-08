@@ -6,6 +6,7 @@ class_name BattleController
 @export var cameraController: CameraController
 @export var conversationController: ConversationController
 @export var abilityMenuPanelController:AbilityMenuPanelController
+@export var turnOrderController:TurnOrderController
 @export var statPanelController:StatPanelController
 @export var stateMachine: StateMachine
 @export var startState: State

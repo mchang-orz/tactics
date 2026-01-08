@@ -1,4 +1,4 @@
-class_name EquipmentSlots
+class_name EquipSlots
 
 enum Slot
 {

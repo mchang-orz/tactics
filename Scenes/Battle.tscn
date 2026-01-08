@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://m7m1yfpleivv"]
+[gd_scene load_steps=68 format=3 uid="uid://m7m1yfpleivv"]
 
 [ext_resource type="Script" uid="uid://b505a5jcw3k5x" path="res://Scripts/Controller/BattleController.gd" id="1_wvl2i"]
 [ext_resource type="Script" uid="uid://cabaertu1p0s3" path="res://Scripts/Controller/InputController.gd" id="2_1samx"]
@@ -25,12 +25,16 @@
 [ext_resource type="Script" uid="uid://basba527rgv1f" path="res://Scripts/Controller/AbilityMenuPanelController.gd" id="19_imcj7"]
 [ext_resource type="Script" uid="uid://dw6ya5lc0xxlm" path="res://Scripts/View Model Component/AbilityMenuPanel.gd" id="20_7i387"]
 [ext_resource type="Script" uid="uid://bjv7daib0wuiq" path="res://Scripts/Controller/Battle States/AbilityTargetState.gd" id="20_hoytp"]
+[ext_resource type="Script" uid="uid://dr20iaxmcfe8" path="res://Scripts/Controller/Battle States/EndFacingState.gd" id="21_hibfo"]
+[ext_resource type="Script" uid="uid://cdsy7127xoue4" path="res://Scripts/Controller/Battle States/PerformAbilityTargetState.gd" id="22_hjq1m"]
+[ext_resource type="Script" uid="uid://dlkhj0f0d1nuf" path="res://Scripts/Controller/Battle States/ConfirmAbilityTargetState.gd" id="23_0gu8g"]
 [ext_resource type="Texture2D" uid="uid://braduj2jw6pig" path="res://Textures/UI/AbilityMenu.png" id="24_1s3yx"]
 [ext_resource type="PackedScene" uid="uid://psdt81r8a7ud" path="res://Prefabs/AbilityMenuEntry.tscn" id="24_mugwg"]
 [ext_resource type="Script" uid="uid://db6srk5rh1vfs" path="res://Scripts/Controller/StatPanelController.gd" id="27_d5dbc"]
 [ext_resource type="Texture2D" uid="uid://dyv8gmyw1i2d6" path="res://Textures/UI/BlueAttackPanel.png" id="27_d13iw"]
 [ext_resource type="Script" uid="uid://74q1syhfnlwh" path="res://Scripts/View Model Component/StatPanel.gd" id="28_hoytp"]
 [ext_resource type="Texture2D" uid="uid://k083k4ddfnhj" path="res://Textures/UI/RedAttackPanel.png" id="30_ybx13"]
+[ext_resource type="Script" uid="uid://bkrv47vwyx8l0" path="res://Scripts/Controller/TurnOrderController.gd" id="35_hjq1m"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xmk5i"]
 
@@ -40,20 +44,13 @@ anchorName = "Hide Bottom"
 myAnchor = 2
 parentAnchor = 3
 offset = Vector2(0, -20)
-duration = 0.5
-trans = 0
-anchorEase = 2
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
 
 [sub_resource type="Resource" id="Resource_imcj7"]
 script = ExtResource("5_jr0ro")
 anchorName = "Hide Top"
-myAnchor = 0
 parentAnchor = 1
 offset = Vector2(0, 20)
-duration = 0.5
-trans = 0
-anchorEase = 2
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
 
 [sub_resource type="Resource" id="Resource_7i387"]
@@ -62,9 +59,6 @@ anchorName = "Show Bottom"
 myAnchor = 3
 parentAnchor = 3
 offset = Vector2(0, -20)
-duration = 0.5
-trans = 0
-anchorEase = 2
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
 
 [sub_resource type="Resource" id="Resource_nttxn"]
@@ -73,9 +67,6 @@ anchorName = "Show Top"
 myAnchor = 1
 parentAnchor = 1
 offset = Vector2(0, 20)
-duration = 0.5
-trans = 0
-anchorEase = 2
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
 
 [sub_resource type="Animation" id="Animation_6xsll"]
@@ -123,20 +114,13 @@ anchorName = "Hide Bottom"
 myAnchor = 3
 parentAnchor = 2
 offset = Vector2(0, -20)
-duration = 0.5
-trans = 0
-anchorEase = 2
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
 
 [sub_resource type="Resource" id="Resource_u5lwd"]
 script = ExtResource("5_jr0ro")
 anchorName = "Hide Top"
 myAnchor = 1
-parentAnchor = 0
 offset = Vector2(0, 20)
-duration = 0.5
-trans = 0
-anchorEase = 2
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
 
 [sub_resource type="Resource" id="Resource_dfi4p"]
@@ -145,20 +129,12 @@ anchorName = "Show Bottom"
 myAnchor = 2
 parentAnchor = 2
 offset = Vector2(0, -20)
-duration = 0.5
-trans = 0
-anchorEase = 2
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
 
 [sub_resource type="Resource" id="Resource_yahm3"]
 script = ExtResource("5_jr0ro")
 anchorName = "Show Top"
-myAnchor = 0
-parentAnchor = 0
 offset = Vector2(0, 20)
-duration = 0.5
-trans = 0
-anchorEase = 2
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
 
 [sub_resource type="Animation" id="Animation_7i387"]
@@ -217,9 +193,6 @@ anchorName = "Hide"
 myAnchor = 2
 parentAnchor = 3
 offset = Vector2(0, -20)
-duration = 0.5
-trans = 0
-anchorEase = 2
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
 
 [sub_resource type="Resource" id="Resource_mugwg"]
@@ -228,9 +201,6 @@ anchorName = "Show"
 myAnchor = 3
 parentAnchor = 3
 offset = Vector2(0, -20)
-duration = 0.5
-trans = 0
-anchorEase = 2
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mugwg"]
@@ -241,7 +211,6 @@ anchorName = "Hide"
 myAnchor = 3
 parentAnchor = 2
 offset = Vector2(0, -20)
-duration = 0.5
 trans = 4
 anchorEase = 1
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
@@ -252,7 +221,6 @@ anchorName = "Show"
 myAnchor = 2
 parentAnchor = 2
 offset = Vector2(0, -20)
-duration = 0.5
 trans = 3
 anchorEase = 1
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
@@ -285,7 +253,6 @@ anchorName = "Hide"
 myAnchor = 2
 parentAnchor = 3
 offset = Vector2(0, -20)
-duration = 0.5
 trans = 4
 anchorEase = 1
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
@@ -296,7 +263,6 @@ anchorName = "Show"
 myAnchor = 3
 parentAnchor = 3
 offset = Vector2(0, -20)
-duration = 0.5
 trans = 4
 anchorEase = 1
 metadata/_custom_type_script = "uid://d3g76v7j4k1jq"
@@ -323,13 +289,14 @@ outline_color = Color(0, 0, 0, 0.501961)
 
 [node name="Battle" type="Node3D"]
 
-[node name="Battle Controller" type="Node" parent="." node_paths=PackedStringArray("board", "inputController", "cameraController", "conversationController", "abilityMenuPanelController", "statPanelController", "stateMachine", "startState")]
+[node name="Battle Controller" type="Node" parent="." node_paths=PackedStringArray("board", "inputController", "cameraController", "conversationController", "abilityMenuPanelController", "turnOrderController", "statPanelController", "stateMachine", "startState")]
 script = ExtResource("1_wvl2i")
 board = NodePath("Board")
 inputController = NodePath("Input Controller")
 cameraController = NodePath("Camera Controller")
 conversationController = NodePath("Conversation Controller")
 abilityMenuPanelController = NodePath("Ability Menu Controller")
+turnOrderController = NodePath("Turn Order Controller")
 statPanelController = NodePath("Stat Panel Controller")
 stateMachine = NodePath("State Machine")
 startState = NodePath("State Machine/Init Battle State")
@@ -530,11 +497,12 @@ script = ExtResource("16_yahm3")
 commandSelectionState = NodePath("../Command Selection State")
 categorySelectionState = NodePath("../Category Selection State")
 
-[node name="Command Selection State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("moveTargetState", "categorySelectionState", "selectUnitState", "exploreState")]
+[node name="Command Selection State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("moveTargetState", "categorySelectionState", "selectUnitState", "endFacingState", "exploreState")]
 script = ExtResource("17_1s3yx")
 moveTargetState = NodePath("../Move Target State")
 categorySelectionState = NodePath("../Category Selection State")
 selectUnitState = NodePath("../Select Unit State")
+endFacingState = NodePath("../End Facing State")
 exploreState = NodePath("../Explore State")
 
 [node name="Category Selection State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("commandSelectionState", "actionSelectionState", "abilityTargetState")]
@@ -547,10 +515,25 @@ abilityTargetState = NodePath("../Ability Target State")
 script = ExtResource("19_d13iw")
 commandSelectionState = NodePath("../Command Selection State")
 
-[node name="Ability Target State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("commandSelectionState", "categorySelectionState")]
+[node name="Ability Target State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("confirmAbilityTargetState", "categorySelectionState")]
 script = ExtResource("20_hoytp")
-commandSelectionState = NodePath("../Command Selection State")
+confirmAbilityTargetState = NodePath("../Confirm Ability Target State")
 categorySelectionState = NodePath("../Category Selection State")
+
+[node name="End Facing State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("selectUnitState", "commandSelectionState")]
+script = ExtResource("21_hibfo")
+selectUnitState = NodePath("../Select Unit State")
+commandSelectionState = NodePath("../Command Selection State")
+
+[node name="Perform Ability State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("endFacingState", "commandSelectionState")]
+script = ExtResource("22_hjq1m")
+endFacingState = NodePath("../End Facing State")
+commandSelectionState = NodePath("../Command Selection State")
+
+[node name="Confirm Ability Target State" type="Node" parent="Battle Controller/State Machine" node_paths=PackedStringArray("performAbilityState", "abilityTargetState")]
+script = ExtResource("23_0gu8g")
+performAbilityState = NodePath("../Perform Ability State")
+abilityTargetState = NodePath("../Ability Target State")
 
 [node name="Input Controller" type="Node" parent="Battle Controller"]
 script = ExtResource("2_1samx")
@@ -832,5 +815,8 @@ text = "LV. 8"
 label_settings = SubResource("LabelSettings_hibfo")
 horizontal_alignment = 2
 vertical_alignment = 1
+
+[node name="Turn Order Controller" type="Node" parent="Battle Controller"]
+script = ExtResource("35_hjq1m")
 
 [node name="TEST" type="Node" parent="."]
