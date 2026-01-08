@@ -1,9 +1,9 @@
 extends Node
-class_name Equip
+class_name Equippable
 
-var defaultSlots:EquipmentSlots.Slot
-var secondarySlots:EquipmentSlots.Slot
-var slots:EquipmentSlots.Slot
+var defaultSlots:EquipSlots.Slot
+var secondarySlots:EquipSlots.Slot
+var slots:EquipSlots.Slot
 
 var _isEquipped:bool
 
